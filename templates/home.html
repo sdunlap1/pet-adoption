@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Pet Adoption Agency{% endblock %}
+
+{% block content %}
+  <ul>
+    {% for pet in pets %}
+      <li class="pet-container">
+        <h2><a href="{{ url_for('show_pet', pet_id=pet.id) }}">{{ pet.name }}</a></h2>
+        {% if pet.photo_url %}
+          <img src="{{ pet.photo_url }}" alt="Photo of {{ pet.name }}" class="pet-photo">
+        {% endif %}
+        {% if pet.available %}
+          <div class="pet-available">Available</div>
+        {% else %}
+          <div class="pet-available">Not Available</div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

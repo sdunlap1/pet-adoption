@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Add a Pet - Pet Adoption Agency{% endblock %}
+
+{% block content %}
+  <h2>Add a Pet</h2>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.name.label }}<br>
+      {{ form.name(size=32) }}<br>
+      {% if form.name.errors %}
+        <ul>
+        {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    </p>
+    <p>
+      {{ form.species.label }}<br>
+      {{ form.species(size=32) }}<br>
+      {% if form.species.errors %}
+        <ul>
+        {% for error in form.species.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    </p>
+    <p>
+      {{ form.photo_url.label }}<br>
+      {{ form.photo_url(size=32) }}<br>
+      {% if form.photo_url.errors %}
+        <ul>
+        {% for error in form.photo_url.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    </p>
+    <p>
+      {{ form.age.label }}<br>
+      {{ form.age() }}<br>
+      {% if form.age.errors %}
+        <ul>
+        {% for error in form.age.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    </p>
+    <p>
+      {{ form.notes.label }}<br>
+      {{ form.notes(cols=32, rows=4) }}<br>
+      {% if form.notes.errors %}
+        <ul>
+        {% for error in form.notes.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    </p>
+    <p>
+      {{ form.available.label }}<br>
+      {{ form.available() }}<br>
+      {% if form.available.errors %}
+        <ul>
+        {% for error in form.available.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    </p>
+    <p>
+      <button type="submit">Add Pet</button>
+    </p>
+  </form>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}{{ pet.name }} - Pet Adoption Agency{% endblock %}
+
+{% block content %}
+  <h2>{{ pet.name }}</h2>
+  <p><strong>Species:</strong> {{ pet.species }}</p>
+  {% if pet.photo_url %}
+    <img src="{{ pet.photo_url }}" alt="Photo of {{ pet.name }}" class="pet-photo">
+  {% endif %}
+  {% if pet.age %}
+    <p><strong>Age:</strong> {{ pet.age }}</p>
+  {% endif %}
+  <p><strong>Notes:</strong> {{ pet.notes }}</p>
+  {% if pet.available %}
+    <div class="pet-available">Available</div>
+  {% else %}
+    <div class="pet-available">Not Available</div>
+  {% endif %}
+
+  <h2>Edit Pet</h2>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.photo_url.label }}<br>
+      {{ form.photo_url(size=32) }}<br>
+      {% if form.photo_url.errors %}
+        <ul>
+        {% for error in form.photo_url.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    </p>
+    <p>
+      {{ form.age.label }}<br>
+      {{ form.age() }}<br>
+      {% if form.age.errors %}
+        <ul>
+        {% for error in form.age.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    </p>
+    <p>
+      {{ form.notes.label }}<br>
+      {{ form.notes(cols=32, rows=4) }}<br>
+      {% if form.notes.errors %}
+        <ul>
+        {% for error in form.notes.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    </p>
+    <p>
+      {{ form.available.label }}<br>
+      {{ form.available() }}<br>
+      {% if form.available.errors %}
+        <ul>
+        {% for error in form.available.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    </p>
+    <p>
+      <button type="submit">Update Pet</button>
+    </p>
+  </form>
+{% endblock %}
